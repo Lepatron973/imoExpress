@@ -1,13 +1,38 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+   
+{% endblock %}
 
     {% block title %}
         Imo Express
     {% endblock %}
  {% block body %}
- 
-<div class="jumbotron text-center">
-        <h1>Binevenu sur la homepage</h1>
-
+ <div class="body">
+    <h1 class="text-center">Binevenu sur Imo Express, vous loger est notre priorité</h1>
+    <div class="container jumbotron text-center">
+        <h2 class="text-center">Nos dernières offres</h2>
+            <div class="row">
+                {% for bien in biens %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card card-head">
+                            <a href="{{path('show',{'id': bien.id})}}">
+                                <h5 class="card-title">{{bien.title}} </h5>
+                            </a>
+                                
+                                <div class="card-body">
+                                    <p>{{bien.city}} ({{bien.postalCode}})</p>
+                                    <div class="text-danger">
+                                        {{bien.price | number_format(0,'',' ')}} €
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+    </div>
 </div>
  
  {% endblock %}

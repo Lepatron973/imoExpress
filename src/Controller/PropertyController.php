@@ -23,12 +23,14 @@ class PropertyController extends AbstractController
         // ->setAddress("8 rue du grand rulut")
         // ->setPostalCode(57000);
         
-        // $em = $this->getDoctrine()->getManager(); récupération de l'instance doctrine puis de son instance manager
+         $em = $this->getDoctrine()->getManager(); #récupération de l'instance doctrine puis de son instance manager
         // $em->persist($property); enregistrement des donnée en cache
         // $em->flush(); transfert à la bdd
 
         $repository = $this->getDoctrine()->getRepository(Property::class);#initialisation du repo avec l'entité concerné qui contient toute les données contenue dans celle ci
-        dump($repository->findOneBy(["city" => "Metz"]));
+        dump($repository->findVisible());
+        // $repository->find(1)->setSold(false); #mettre à jours des données
+        // $em->flush();
         return $this->render('pages/biens.html.twig', [
             'current_menu' => 'properties'
         ]);

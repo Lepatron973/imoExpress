@@ -7,3 +7,6 @@ home:
 biens:
     path: /biens
     controller: App\Controller\PropertyController::biens
+show:
+    path: /biens/{id}
+    controller: App\Controller\HomeController::show
