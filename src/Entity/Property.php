@@ -234,12 +234,12 @@ class Property
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt()
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(String $created_at): self
     {
         $this->created_at = $created_at;
 

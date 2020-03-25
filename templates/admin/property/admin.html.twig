@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+        Admin
+{% endblock %}
+ {% block body %}
+    <div class="container mt-4">
+        <h1>Gérer les biens</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{message}}
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="overflow-auto" style="max-height: 500px">
+            
+                {% for bien in properties %}
+                <tr>
+                    <td>{{bien.title}}</td>
+                    <td class="d-flex">
+                        <a class="btn btn-secondary" href="{{path( 'admin_edit', {"id":bien.id} ) }}">edit</a>
+                        <form action="{{path('admin_delete', {"id":bien.id})}}" method="post" class="ml-1" onsubmit="return confirm('Êtes vous sûr de vouloir supprimer ce bien')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ bien.id)}}">
+                            <button class="btn btn-danger">supprimer</button>
+                        </form>
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td><a class="btn btn-success" href="{{path( 'admin_new' ) }}">créer</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+ 
+ {% endblock %}

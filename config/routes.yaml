@@ -10,3 +10,17 @@ biens:
 show:
     path: /biens/{id}
     controller: App\Controller\HomeController::show
+admin:
+    path: /admin/property
+    controller: App\Controller\Admin\AdminPropertyController:index
+admin_edit:
+    path: admin/property/edit/{id}
+    controller: App\Controller\Admin\AdminPropertyController:edit
+    methods: GET|POST
+admin_new:
+    path: admin/property/new
+    controller: App\Controller\Admin\AdminPropertyController::new
+admin_delete:
+    path: admin/property/edit/{id}
+    controller: App\Controller\Admin\AdminPropertyController::delete
+    methods: DELETE
